@@ -1,0 +1,37 @@
+<TimeLapse>:
+BoxLayout:
+    orientation: 'vertical'
+    Camera:
+        id: camera
+        resolution: (1280, 960)
+        canvas.before:
+            PushMatrix:
+            Rotate:
+                angle: -90
+                origin: self.center
+        canvas.after:
+            PopMatrix
+
+    Slider:
+        id: slider
+        min: 0.5
+        max: 60
+        step: 0.5
+
+
+    Label:
+        text: 'intervalle entre les photos de : ' + str(slider.value) + 'secondes'
+
+
+    Button:
+        id: start_stop_timelapse
+        text: 'Commencer le timelapse'
+        font_size: 40
+        on_press: app.take_picture()
+
+
+
+    Label:
+        id: status_camera
+        text: 'Camera status'
+        font_size: 10
